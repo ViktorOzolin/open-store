@@ -2,14 +2,14 @@ import sequelize from '../db';
 import {DataTypes} from 'sequelize';
 
 
-const User = sequelize.define('user', {
+export const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, unique: true },
     password: { type: DataTypes.STRING },
     role: { type: DataTypes.STRING, defaultValue: 'USER'},
 });
 
-const Cart = sequelize.define('cart',{
+export const Cart = sequelize.define('cart',{
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
@@ -49,3 +49,42 @@ const Rating = sequelize.define('rating', {
 const TypeBrand = sequelize.define('type_brand', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
+
+User.hasMany(Cart);
+Cart.belongsTo(User);
+
+User.hasMany(Rating);
+Rating.belongsTo(User);
+
+Cart.hasMany(CartProduct);
+CartProduct.belongsTo(Cart);
+
+Type.hasMany(Product);
+Product.belongsTo(Type);
+
+Brand.hasMany(Product);
+Product.belongsTo(Brand);
+
+Product.hasMany(Rating);
+Rating.belongsTo(Product);
+
+Product.hasMany(CartProduct);
+CartProduct.belongsTo(Product);
+
+Product.hasMany(ProductInfo, {as: 'info'});
+ProductInfo.belongsTo(Product);
+
+Type.belongsToMany(Brand, {through: TypeBrand});
+Brand.belongsToMany(Type, {through: TypeBrand});
+
+export default {
+    User,
+    Brand,
+    Cart,
+    CartProduct,
+    Product,
+    ProductInfo,
+    Type,
+    TypeBrand,
+    Rating,
+}

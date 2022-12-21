@@ -4,7 +4,8 @@ import express, {Application} from 'express';
 import fileUpload from 'express-fileupload';
 import cors from 'cors';
 import path from 'path';
-import {loggerMiddleware} from "./middleware/logger";
+import {loggerMiddleware} from './middleware/loggerMiddleware';
+import {errorMiddleware} from './middleware/errorHandlingMiddleware';
 import router from './routes';
 import sequelize from './db';
 
@@ -22,7 +23,10 @@ app.use(loggerMiddleware);
 app.use('/api', router);
 
 
-const start = async () => {
+app.use(errorMiddleware);
+
+
+const bootstrap = async () => {
     try {
         await sequelize.authenticate();
         await sequelize.sync();
@@ -34,4 +38,4 @@ const start = async () => {
     }
 }
 
-start();
+bootstrap();
