@@ -1,0 +1,95 @@
+@import '../styles/vars';
+@import '../styles/globals';
+
+/* Buttons width */
+$smallButton: 100px;
+$mediumButton: $smallButton * $ratio;
+$largeButton: $mediumButton * $ratio;
+
+
+.button {
+  background-color: #ffffff;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 13px;
+  color: $dark;
+  border: none;
+  transition: ease-in .2s;
+
+  /* Type */
+
+  &_primary {
+    background-color: $primary;
+    color: white;
+
+    &:hover {
+      box-shadow: 0 0 0 0.1rem $primary;
+    }
+  }
+
+  &_secondary {
+    background-color: $secondary;
+
+    &:hover {
+      box-shadow: 0 0 0 0.1rem $dark;
+    }
+  }
+
+  /* Outline */
+
+  &_outline {
+
+    &_primary {
+      border: 1px solid $primary;
+      background-color: transparent;
+      color: $dark;
+    }
+    &_secondary {
+      border: 1px solid $secondary;
+      background-color: transparent;
+
+    }
+  }
+
+  /* Variant */
+
+  &_round {
+    border-radius: 40px;
+  }
+  &_rounded {
+    border-radius: 8px;
+  }
+  &_square {
+    border-radius: 0;
+  }
+
+  /* Size */
+
+  &_small {
+    padding: 8px 18px;
+    font-size: 13px;
+    min-width: $smallButton;
+  }
+  &_medium {
+    padding: 10px 27px;
+    font-size: 16px;
+    min-width: $mediumButton;
+  }
+  &_large {
+    padding: 13px 36px;
+    font-size: 19px;
+    min-width: $largeButton;
+  }
+
+  &_disabled {
+    background-color: #d6d6d6;
+    box-shadow: none;
+    border: none;
+    color: $secondary;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
