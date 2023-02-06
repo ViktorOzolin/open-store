@@ -1,0 +1,30 @@
+@import '../styles/vars';
+
+@mixin divide($side) {
+  content: "";
+  position: absolute;
+  #{$side}: -16px;
+  height: 100%;
+  width: 1px;
+  background-color: $divider-light-2;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 16px;
+}
+
+.left {
+  &::before {
+   @include divide('left');
+  }
+}
+
+.right {
+  &::after {
+    @include divide('right');
+  }
+}

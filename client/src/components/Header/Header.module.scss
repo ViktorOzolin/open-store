@@ -7,8 +7,9 @@
   align-items: center;
   backdrop-filter: saturate(50%) blur(8px);
   width: 100%;
-  height: 72px;
 }
 .content {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

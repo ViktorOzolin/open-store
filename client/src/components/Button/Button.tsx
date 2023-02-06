@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import styles from './Button.module.scss';
+import classes from './Button.module.scss';
+import classNames from "classnames";
 
 interface ButtonProps {
     /**
@@ -38,57 +39,41 @@ interface ButtonProps {
      * Disable button
      */
     disabled?: boolean;
+    /**
+     * Own classnames
+     */
+    className?: string
 }
 
 export const Button: FC<ButtonProps> = ({
                                             onClick,
-                                            variant = 'rounded',
+                                            variant = 'round',
                                             size = 'medium',
-                                            primary,
-                                            outline,
+                                            primary= false,
+                                            outline = false,
                                             backgroundColor,
                                             children,
                                             style,
                                             disabled = false,
-                                            ...props
+                                            className,
+                                            ...others
 }) => {
-
-    const {
-        button,
-        button_primary,
-        button_secondary,
-        button_disabled,
-        button_outline,
-        button_outline_primary,
-        button_outline_secondary,
-        [`button_${size}`]: buttonSize,
-        [`button_${variant}`]: buttonVariant,
-    } = styles;
-
-    const buttonMode = primary ? button_primary : button_secondary;
-    const buttonDisabled = disabled ? button_disabled : '';
-    let buttonOutline;
-
-    if(primary && outline) {
-        buttonOutline = button_outline_primary;
-    } else if(!primary && outline) {
-        buttonOutline = button_outline_secondary;
-    } else {
-        buttonOutline = button_outline;
-    }
+    const buttonClasses = classNames({
+        [classes.button]: true,
+        [classes.primary]: primary,
+        [classes.secondary]: !primary,
+        [classes.outline_primary]: primary && outline,
+        [classes.outline_secondary]: !primary && outline,
+        [classes.disabled]: disabled,
+        [classes[variant]]: variant,
+        [classes[size]]: size,
+        [className ?? '']: className,
+    });
 
     return (
         <button
-            className={
-            [
-                button,
-                buttonMode,
-                buttonSize,
-                buttonVariant,
-                buttonOutline,
-                buttonDisabled,
-            ].join(' ')}
-            {...props}
+            className={buttonClasses}
+            {...others}
             onClick={onClick}
             style={{backgroundColor, ...style}}
             disabled={disabled}

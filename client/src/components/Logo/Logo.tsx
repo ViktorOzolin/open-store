@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import styles from './Logo.module.scss';
+import classes from './Logo.module.scss';
 
 interface LogoProps {
     children?: React.ReactNode;
@@ -7,7 +7,7 @@ interface LogoProps {
 
 export const Logo:FC<LogoProps> = ({children}) => {
     return (
-        <div className={styles.logoWrapper}>
+        <div className={classes.root}>
             {children}
         </div>
     );

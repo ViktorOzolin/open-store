@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import styles from './Container.module.scss';
+import classes from './Container.module.scss';
+import classNames from 'classnames';
 
 interface ContainerProps {
     /**
@@ -16,18 +17,15 @@ interface ContainerProps {
     children?: React.ReactNode;
 }
 
-
 export const Container:FC<ContainerProps> = ({fluid, style, children}) => {
 
-    const {
-        container,
-        container_fluid,
-    } = styles;
-
-    const mode = fluid ? container_fluid : container;
+    const containerClassNames = classNames({
+        [classes.root]: true,
+        [classes.container_fluid]: fluid,
+    });
 
     return (
-        <div className={[mode].join(' ')} style={style}>
+        <div className={containerClassNames} style={style}>
             {children}
         </div>
     );

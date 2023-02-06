@@ -1,6 +1,6 @@
-import React, {FC} from 'react';
-import styles from './Toggle.module.scss';
-import cn from "classnames";
+import React, {FC, useState} from 'react';
+import classes from './Toggle.module.scss';
+import classNames from 'classnames';
 
 interface ToggleProps {
     /**
@@ -10,7 +10,7 @@ interface ToggleProps {
     /**
      * Optional click handler
      */
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     /**
      * Users style
      */
@@ -22,7 +22,7 @@ interface ToggleProps {
     /**
      * Button active or not
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Disabled switch
      */
@@ -30,7 +30,7 @@ interface ToggleProps {
 }
 
 export const Toggle:FC<ToggleProps> = ({
-                                           size= 'small',
+                                           size= 'medium',
                                            style,
                                            speed = 200,
                                            active = false,
@@ -38,18 +38,28 @@ export const Toggle:FC<ToggleProps> = ({
                                            disabled= false
 }) => {
 
+    const [checked, setChecked] = useState(active);
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (onClick) {
+            onClick(event);
+        } else {
+            setChecked(!checked);
+        }
+    }
+
+    const toggleClasses = classNames({
+        [classes.toggle]: true,
+        [classes.toggle_active]: checked,
+        [classes[size]]: true,
+        [classes[`${size}_active`]]: checked,
+    });
 
     return (
             <button
-                className={cn({
-                    [styles.toggle]: true,
-                    [styles.toggle_active]: active,
-                    [styles[size]]: true,
-                    [styles[`${size}_active`]]: active,
-                })}
+                className={toggleClasses}
                 type='button'
-                onClick={onClick}
+                onClick={handleClick}
                 role='switch'
                 disabled={disabled}
                 style={{transition: `all ${speed}ms`,...style}}

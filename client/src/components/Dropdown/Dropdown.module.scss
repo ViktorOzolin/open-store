@@ -1,0 +1,43 @@
+@import '../styles/vars';
+
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+}
+.button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color .25s;
+  padding: 0 20px;
+  height: 100%;
+  position: relative;
+
+  &:hover {
+    color: $primary;
+  }
+  &:hover svg {
+    fill: $primary;
+  }
+
+  &:hover > div {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s;
+  }
+}
+.text {
+  display: flex;
+  align-items: center;
+
+  > svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    fill: $black-mute;
+  }
+}

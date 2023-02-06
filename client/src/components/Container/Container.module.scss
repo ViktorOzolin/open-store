@@ -1,32 +1,27 @@
 @import '../styles/media';
 
-.container {
+.root {
   /* xs device */
-  margin: 0 auto;
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
 
   @media (min-width: $sm_device) {
     max-width: 540px;
-    padding: 0 ($sm_device - 540) / 2;
   }
   @media (min-width: $md_device) {
     max-width: 720px;
-    padding: 0 ($md_device - 720) / 2;
   }
   @media (min-width: $lg_device) {
     max-width: 960px;
-    padding: 0 ($lg_device - 960) / 2;
   }
   @media (min-width: $xl_device) {
     max-width: 1140px;
-    padding: 0 ($xl_device - 1140) / 2;
   }
   @media (min-width: $xxl_device) {
-    max-width: 1320px;
-    padding: 0 ($xxl_device - 1320) / 2;
+    max-width: $xxl_device - 64px;
   }
 }
 

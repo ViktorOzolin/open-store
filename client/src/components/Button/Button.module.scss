@@ -16,80 +16,78 @@ $largeButton: $mediumButton * $ratio;
   color: $dark;
   border: none;
   transition: ease-in .2s;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  /* Type */
+/* Type */
 
+.primary {
+  background-color: $primary;
+  color: white;
+  &:hover {
+    background-color: $button-hover;
+  }
+}
+
+.secondary {
+  background-color: $gray-light-5;
+  &:hover {
+    background-color: $gray-light-4;
+    color: $gray-dark-4;
+  }
+}
+
+/* Variant */
+
+.round {
+  border-radius: 40px;
+}
+.rounded {
+  border-radius: 8px;
+}
+.square {
+  border-radius: 0;
+}
+
+/* Outline */
+
+.outline {
   &_primary {
-    background-color: $primary;
-    color: white;
-
-    &:hover {
-      box-shadow: 0 0 0 0.1rem $primary;
-    }
+    border: 1px solid $black-soft;
   }
-
   &_secondary {
-    background-color: $secondary;
-
-    &:hover {
-      box-shadow: 0 0 0 0.1rem $dark;
-    }
+    border: 1px solid $gray-light-3;
+    background-color: $gray-light-5;
   }
+}
 
-  /* Outline */
+/* Size */
 
-  &_outline {
+.small {
+  padding: 8px 18px;
+  font-size: 13px;
+  min-width: $smallButton;
+}
+.medium {
+  padding: 10px 27px;
+  font-size: 16px;
+  min-width: $mediumButton;
+}
+.large {
+  padding: 13px 36px;
+  font-size: 19px;
+  min-width: $largeButton;
+}
 
-    &_primary {
-      border: 1px solid $primary;
-      background-color: transparent;
-      color: $dark;
-    }
-    &_secondary {
-      border: 1px solid $secondary;
-      background-color: transparent;
+/* Disabled */
 
-    }
-  }
+.disabled {
+  background-color: #d6d6d6;
+  box-shadow: none;
+  border: none;
+  color: $secondary;
 
-  /* Variant */
-
-  &_round {
-    border-radius: 40px;
-  }
-  &_rounded {
-    border-radius: 8px;
-  }
-  &_square {
-    border-radius: 0;
-  }
-
-  /* Size */
-
-  &_small {
-    padding: 8px 18px;
-    font-size: 13px;
-    min-width: $smallButton;
-  }
-  &_medium {
-    padding: 10px 27px;
-    font-size: 16px;
-    min-width: $mediumButton;
-  }
-  &_large {
-    padding: 13px 36px;
-    font-size: 19px;
-    min-width: $largeButton;
-  }
-
-  &_disabled {
-    background-color: #d6d6d6;
+  &:hover {
     box-shadow: none;
-    border: none;
-    color: $secondary;
-
-    &:hover {
-      box-shadow: none;
-    }
   }
 }
