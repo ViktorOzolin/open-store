@@ -1,5 +1,5 @@
 import {sign} from 'jsonwebtoken';
-import {IGenerateJWT} from '../types/types';
+import {IGenerateJWT} from '../types';
 
 const secretKey = String(process.env.SECRET_KEY);
 

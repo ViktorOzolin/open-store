@@ -3,7 +3,7 @@ import {generateJwt} from '../utils/generateJWT';
 import {hash, compare} from 'bcrypt';
 import ApiError from '../error/Api.error';
 import {Cart, User} from '../models';
-import {ICart, IUser} from "../types/types";
+import {ICart, IUser} from '../types';
 
 
 
